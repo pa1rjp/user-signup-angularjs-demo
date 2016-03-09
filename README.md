@@ -1,8 +1,5 @@
 # user-signup-angularjs-demo
 
-### Author:  
-rajput.pavan@capillarytech.com
-
 ### Title:  
 Demo user signup app using AngularJS.
 
