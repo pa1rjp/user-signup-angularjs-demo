@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="UserApp">
+   <head>
+      <meta charset="UTF-8">
+      <title>Register | User</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link rel="stylesheet" href="./style.css">
+   </head>
+   <body ng-controller="mainController">
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <a href="#signup" class="btn btn-success navbar-btn pull-left">Sign up</a>
+            <h3 class="navbar-text text-center text-capitalize" id="header">{{header}}</h3>
+            <a href="#userlist" class="btn btn-success navbar-btn pull-right">List users</a>
+         </div>
+      </nav>
+      <div class="container-fluid break">
+         <div class="row" id="wrapper" ng-view>
+            <!-- <p ng-repeat="user in users">{{user.email}}</p> -->
+         </div>
+      </div>
+      <script type="text/ng-template" id="signup">
+         <div class="col-md-6 col-md-offset-3 highlight break">
+            <div class="alert alert-danger" role="alert" id="valmsg" ng-show="isnotvalid">Please fill empty fields</div>
+         		<form class="break" ng-submit="signupUser()">
+         			<div class="col-md-6">
+         				<div class="form-group">
+         					<input type="text" class="form-control" ng-model="user.username" id="uname" placeholder="User Name" tabindex="1">
+         					<p class="text-danger hide">Error</p>
+         				</div>
+         				<div class="form-group break">
+         					<input type="text" class="form-control" ng-model="user.first_name" id="fname" placeholder="First Name" tabindex="3">
+         					<p class="text-danger hide">Error</p>
+         				</div>
+         				<div class="form-group break">
+         					<input type="password" class="form-control" ng-model="user.password" id="password" placeholder="Passwrod" tabindex="5">
+         					<p class="text-danger hide">Error</p>
+         				</div>
+         			</div>
+         			<div class="col-md-6">
+         				<div class="form-group">
+         					<input type="email" class="form-control" ng-model="user.email" id="email" placeholder="Email" tabindex="2">
+         					<p class="text-danger hide">Error</p>
+         				</div>
+         				<div class="form-group break">
+         					<input type="text" class="form-control" ng-model="user.last_name" id="lname" placeholder="Last Name" tabindex="4">
+         					<p class="text-danger hide">Error</p>
+         				</div>
+         				<div class="form-group break">
+         					<input type="password" class="form-control" id="cpassword" placeholder="Confirm Password" tabindex="6">
+         					<p class="text-danger hide">Error</p>
+         				</div>						
+         			</div>
+         			<div class="col-md-12">
+         				<button type="submit" class="btn btn-success pull-right break">Sign up</button>
+         			</div>
+         		</form>
+         	</div>
+      </script>
+      <script type="text/ng-template" id="viewprofile">
+         <div class="col-md-4 col-md-offset-4 highlight break">
+         	<strong ng-show="!user">User not present !!!</strong>
+         	<div class="col-md-5" ng-show="user">
+         		<img src="https://www.drupal.org/files/profile_default.jpg" alt="..." class="img-circle">
+         	</div>
+         	<div class="col-md-7" ng-show="user">
+         		<h3 class="text-capitalize">{{ user.first_name }} {{ user.last_name }}</h3>
+         		<br>
+         		<small>
+         			<p>
+         				<span class="text-capitalize">username:</span>
+         				<span>{{ user.username }}</span>
+         			</p>
+         			<p>
+         				<span class="text-capitalize">Email:</span>
+         				<span>
+         					<a href="#">{{ user.email }}</a>
+         				</span>
+         			</p>
+         		</small>
+         	</div>
+         </div>
+      </script>
+      <script type="text/ng-template" id="userslist">
+         <div class="col-md-6 col-md-offset-3 highlight break">
+         	<table class="table table-hover" ng-show="users"> 
+         		<thead> 
+         			<tr> 
+         				<th>#</th> 
+         				<th>First Name</th> 
+         				<th>Last Name</th> 
+         				<th>Username</th>
+         				<th>Email</th>
+         				<th></th> 
+         			</tr> 
+         		</thead> 
+         		<tbody>
+         			<tr ng-repeat="user in users">
+         				<th scope="row">{{ $index+1 }}</th>
+         				<td>{{ user.first_name }}</td>
+         				<td>{{ user.last_name }}</td>
+         				<td>{{ user.username }}</td>
+         				<td>{{ user.email }}</td>
+         				<td><a href="#profile/{{ user.username }}" title="View"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+         			</tr>
+         		</tbody>
+         	</table>
+         	<strong ng-show="!users">Sorry no data to show !!!</strong>
+         </div>
+      </script>
+      
+      <!-- Libraries START -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+      <script src="./app.js"></script>
+      <!-- Libraries END -->
+
+   </body>
+</html>
